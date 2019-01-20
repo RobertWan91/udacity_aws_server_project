@@ -1,0 +1,52 @@
+<html>
+
+<head>
+	    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+	    </head>
+
+
+
+      <h1> Catalog App </h1>
+
+
+      <h2> Categories </h2>
+
+      <div class = 'topcorner'>
+      <a href = '{{url_for('showLogin') }}'> Login</a>
+      </div>
+
+            {% for i in categories %}
+
+      <div class = 'name'>
+
+            <br clear="all" />
+            <a href = '{{url_for('catagoriesItem', catalog_name=i.name) }}'> {{i.name}}</a>
+            <br clear="all" />
+
+            </div>
+
+
+            {% endfor %}
+
+      <br clear="all" />
+      <br clear="all" />
+
+      <h2> Last Added Items </h2>
+
+      <br clear="all" />
+
+            {% for j in last_items %}
+
+      <div class = 'name'>
+
+            <br clear="all" />
+            <a href = '{{url_for('itemdescription', item_name=j.title) }}'> {{j.title}}</a>
+            <br clear="all" />
+
+            </div>
+
+            {% endfor %}
+
+      </body>
+
+</html>
