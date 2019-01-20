@@ -18,29 +18,40 @@ Here is the list of software installed in AWS LightSail for configuration.
 7. sudo pip3 install oauth2client requests httplib2
 
 Configurations made:
-1. Firewall configuration
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow 2200/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 123/udp
+1. Firewall configuration:
+
+    sudo ufw default deny incoming
+
+    sudo ufw default allow outgoing
+    
+    sudo ufw allow 2200/tcp
+    
+    sudo ufw allow 80/tcp
+    \sudo ufw allow 123/udp
 
 2. Timezone for UTC
-sudo dpkg-reconfigure tzdata
+    
+    sudo dpkg-reconfigure tzdata
 
-3. grader user with sudo access
-a. sudo adduser grader
-b. sudo visudo
-c. after b, add 'grader  ALL=(ALL:ALL) ALL' under 'root    ALL=(ALL:ALL) ALL'
+3. grader user with sudo access:
+    
+    sudo a2ensite catalog.conf
+    
+    sudo visudo
+   
+    After b, add 'grader  ALL=(ALL:ALL) ALL' under 'root    ALL=(ALL:ALL) ALL'
 
 4. wsgi configuration
-a. project.wsgi file
-b. config file at /etc/apache2/sites-available/catalog.conf
+
+    project.wsgi file
+    
+    config file at /etc/apache2/sites-available/catalog.conf
 
 5. database user setup
-a. create user catalog with access to categoriesitem.db
-b. in database_setup.py & project.py: 
-    engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
+    
+    Create user catalog with access to categoriesitem.db
+    Then. in database_setup.py & project.py: 
+        engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
 
 
 First, we run:
@@ -51,17 +62,24 @@ Second, we run:
 python addallitems.py
 to add all info into the database.
 
-When running the whole application, we run
-python project.py,
-then open the browser in localhost:80 to the main page.
+When running the whole application, we run apache2:
+
+    sudo a2dissite 000-default.conf
+    sudo a2ensite catalog.conf
+    sudo service apache2 reload
 
 Click on login button to login via google.
 
-Url: localhost:5000/catalog/<catalog_name>/items/
+Url: 13.236.121.205/catalog/<catalog_name>/items/
 To see all items under one catalog
 
-Url:  localhost:5000/catalog/<item_name>/
+Url:  13.236.121.205/catalog/<item_name>/
 To see the description for one specific item
 
-Url: localhost:5000/catalog.json
+Url: 13.236.121.205/catalog.json
 To obtain all data in json format
+
+Here is a list of referenced entries:
+1.https://blog.ekbana.com/deploying-flask-application-using-mod-wsgi-bdf59174a389
+2. https://www.jakowicz.com/flask-apache-wsgi/
+3. https://stackoverflow.com/questions/19344252/how-to-install-configure-mod-wsgi-for-py3 
