@@ -80,6 +80,9 @@ Url: 13.236.121.205/catalog.json
 To obtain all data in json format
 
 Here is a list of referenced entries:
-1.https://blog.ekbana.com/deploying-flask-application-using-mod-wsgi-bdf59174a389
+
+1. https://blog.ekbana.com/deploying-flask-application-using-mod-wsgi-bdf59174a389
+
 2. https://www.jakowicz.com/flask-apache-wsgi/
+
 3. https://stackoverflow.com/questions/19344252/how-to-install-configure-mod-wsgi-for-py3 
